@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-
-import { Box, Button, Unstable_Grid2 as Grid, Typography } from "@mui/material";
-import SecondaryButton from "../Shared/SecondaryButton";
+import { Box, Unstable_Grid2 as Grid, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CustomDrawer from "./CustomDrawer";
-import HomeLayout from "../../Layouts/HomeLayout";
+import FrontLayout from "../../Layouts/FrontLayout";
+import SecondaryButton from "../shared/SecondaryButton";
 
 const NavBar = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const toggleDrawer = () => setOpenDrawer(!openDrawer);
   return (
-    <HomeLayout sx={{}}>
+    <FrontLayout sx={{}}>
       <Box sx={{ flexGrow: 1, mx: "auto", my: 2 }}>
         <Grid container alignItems={"center"} justifyContent={"space-between"}>
           <Grid xs={2} sm={3}>
@@ -44,16 +43,15 @@ const NavBar = () => {
           toggleDrawer={toggleDrawer}
         />
       </Box>
-    </HomeLayout>
+    </FrontLayout>
   );
 };
 
 const contentData = {
-  logo: "/playground_assets/logo-1500h.png",
+  logo: "/assets/unibox-navbar.svg",
   navbarLinks: [
     { id: 1, text: "Home" },
-    { id: 2, text: "About" },
-    { id: 3, text: "Contact" },
+    { id: 3, text: "Admission News" },
   ],
 };
 

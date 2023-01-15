@@ -2,7 +2,7 @@ import Head from "next/head";
 import { Box } from "@mui/material";
 
 import Footer from "../src/components/Footer";
-import HomeLayout from "../src/Layouts/HomeLayout";
+import FrontLayout from "../src/Layouts/FrontLayout";
 import NavBar from "../src/components/NavBar";
 import Header from "../src/components/Home/Header";
 import Features from "../src/components/Home/Features";
@@ -21,14 +21,14 @@ export default function Home() {
         />
       </Head>
       <NavBar />
-      <HomeLayout>
+      <FrontLayout>
         <div>
           <Header />
           <Features />
           <Testimonials />
           <SimpleInfoBox />
         </div>
-      </HomeLayout>
+      </FrontLayout>
       <Footer />
     </Box>
   );

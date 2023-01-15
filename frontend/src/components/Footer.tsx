@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Unstable_Grid2 as Grid, Typography } from "@mui/material";
 import { Facebook, Twitter } from "@mui/icons-material";
 import Subscription from "./Home/Subscription";
+import CopyRight from "./shared/CopyRight";
 
 const Footer = ({ hideSubscription }: { hideSubscription?: boolean }) => {
   return (
@@ -18,14 +19,16 @@ const Footer = ({ hideSubscription }: { hideSubscription?: boolean }) => {
             <Grid>
               <img
                 alt="image"
-                src="/playground_assets/logo-200h.png"
+                src="/assets/unibox-logo.png"
                 className="footer-image"
+                style={{ width: 150, height: 150 }}
               />
             </Grid>
             <Grid>
               <Typography>
-                Feed all your content, news, mailboxes all into one single app
-                and read everything from one place, on your device.
+                Unibox helps you to find all universities info in a single place
+                and help you to find your dream universities without spending
+                too much time on search
               </Typography>
             </Grid>
             <Grid mt={2}>
@@ -64,10 +67,7 @@ const Footer = ({ hideSubscription }: { hideSubscription?: boolean }) => {
             </Grid>
           </Grid>
         </Grid>
-        <Typography textAlign="center">
-          {" "}
-          © All rights reserved @unibox
-        </Typography>
+        <CopyRight />
       </Container>
     </>
   );

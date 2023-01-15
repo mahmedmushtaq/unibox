@@ -13,11 +13,11 @@ import WhiteInputFiled from "../../shared/WhiteInputFiled";
 import PrimaryButton from "../../shared/PrimaryButton";
 import { featuresList } from "../../../global/constants";
 import { CheckCircleOutline } from "@mui/icons-material";
-import HomeLayout from "../../../Layouts/HomeLayout";
+import FrontLayout from "../../../Layouts/FrontLayout";
 
 const Subscription = () => {
   return (
-    <HomeLayout sx={{}}>
+    <FrontLayout sx={{}}>
       <Grid
         container
         alignItems="center"
@@ -65,13 +65,13 @@ const Subscription = () => {
         <Grid md={5} sx={{ display: { xs: "none", sm: "block" } }}>
           <img
             alt="image"
-            src="/playground_assets/group%2032-1200w.png"
+            src="/assets/unibox-subscription.png"
             className="home-image5"
             style={{ maxWidth: 589, minWidth: 550 }}
           />
         </Grid>
       </Grid>
-    </HomeLayout>
+    </FrontLayout>
   );
 };
 

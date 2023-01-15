@@ -17,7 +17,7 @@ interface IProps {
   toggleDrawer: () => void;
   navbarLinks: { id: number; text: string }[];
 }
-const logo = "/playground_assets/logo-1500h.png";
+const logo = "/assets/logo-1500h.png";
 
 const CustomDrawer = ({ open, toggleDrawer, navbarLinks }: IProps) => {
   const drawerContent = (

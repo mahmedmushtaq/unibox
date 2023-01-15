@@ -64,7 +64,7 @@ const Header = () => {
       <Grid md={6} sx={{ mt: { xs: 2, md: 0 } }}>
         <img
           alt="image"
-          src="/playground_assets/hero%20image-1200w.png"
+          src="/assets/hero%20image-1200w.png"
           style={headerImageStyle}
         />
       </Grid>

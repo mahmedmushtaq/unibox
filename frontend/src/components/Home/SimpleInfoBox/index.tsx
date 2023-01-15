@@ -29,19 +29,19 @@ const SimpleInfoBox = () => {
         <Grid xs={11} sm={6} md={4}>
           <ImageCard
             heading="Open Admissions Update"
-            imageSrc="/playground_assets/vector%203-200h.png"
+            imageSrc="/assets/vector%203-200h.png"
           />
         </Grid>
         <Grid xs={11} sm={6} md={4}>
           <ImageCard
-            imageSrc="/playground_assets/vector%203%20%5B1%5D-200h.png"
+            imageSrc="/assets/vector%203%20%5B1%5D-200h.png"
             heading="All criteria information in a single place"
           />
         </Grid>
 
         <Grid xs={11} sm={6} md={4}>
           <ImageCard
-            imageSrc="/playground_assets/vector%203%20%5B2%5D-200h.png"
+            imageSrc="/assets/vector%203%20%5B2%5D-200h.png"
             heading="Free Email Subscription"
           />
         </Grid>

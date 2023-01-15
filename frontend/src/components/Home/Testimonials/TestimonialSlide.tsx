@@ -39,7 +39,7 @@ const TestimonialSlide = ({
             <Box sx={imageContainerSx}>
               <img
                 alt="Dots"
-                src="/playground_assets/union-200h.png"
+                src="/assets/union-200h.png"
                 style={dotsImageStyle}
               />
             </Box>
