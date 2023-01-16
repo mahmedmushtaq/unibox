@@ -5,13 +5,14 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import Link from "next/link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import CopyRight from "../../shared/CopyRight";
+import CopyRight from "../../components/shared/CopyRight";
+import { Link } from "react-router-dom";
+import LinkWrapper from "../../components/shared/LinkWrapper";
 
 const SignUp = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -101,14 +102,7 @@ const SignUp = () => {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Typography
-                component={Link}
-                href="/admin/login"
-                variant="body2"
-                sx={{ color: "grey" }}
-              >
-                Already have an account? Sign in
-              </Typography>
+              <LinkWrapper link="/" text="Already have an account? Sign in" />
             </Grid>
           </Grid>
         </Box>

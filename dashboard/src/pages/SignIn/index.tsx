@@ -10,10 +10,11 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import CopyRight from "../../shared/CopyRight";
-import Link from "next/link";
+import { Link } from "react-router-dom";
+import CopyRight from "../../components/shared/CopyRight";
+import LinkWrapper from "../../components/shared/LinkWrapper";
 
-const Login = () => {
+const SignIn = () => {
   const [shouldShowForgotPassword, setShouldShowForgotPassword] =
     useState(false);
 
@@ -91,14 +92,10 @@ const Login = () => {
               </Typography>
             </Grid>
             <Grid item>
-              <Typography
-                component={Link}
-                href="/admin/registration"
-                variant="body2"
-                sx={{ color: "grey" }}
-              >
-                {"Don't have an account? Sign Up"}
-              </Typography>
+              <LinkWrapper
+                link="/sign-up"
+                text="Don't have an account? Sign Up"
+              />
             </Grid>
           </Grid>
         </Box>
@@ -108,4 +105,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignIn;
