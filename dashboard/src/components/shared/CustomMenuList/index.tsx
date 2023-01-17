@@ -4,9 +4,16 @@ import Button from "@mui/material/Button";
 import Menu, { MenuProps } from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { NavLink } from "react-router-dom";
+import { Typography } from "@mui/material";
 
 interface IProps {
-  items: { text: string; id: string | number; icon?: React.ReactNode }[];
+  items: {
+    text: string;
+    id: string | number;
+    icon?: React.ReactNode;
+    link?: string;
+  }[];
   anchorEl: HTMLElement | null;
   open: boolean;
   handleClose: () => void;
@@ -26,8 +33,17 @@ const CustomMenuList = ({ items, open, anchorEl, handleClose }: IProps) => {
       >
         {items.map((item) => (
           <MenuItem key={item.id} onClick={handleClose} disableRipple>
-            {item.icon}
-            {item.text}
+            {item.link ? (
+              <NavLink style={{ textDecoration: "none" }} to={item.link}>
+                {item.icon}
+                <Typography color="primary"> {item.text}</Typography>
+              </NavLink>
+            ) : (
+              <>
+                {item.icon}
+                {item.text}
+              </>
+            )}
           </MenuItem>
         ))}
       </StyledMenu>

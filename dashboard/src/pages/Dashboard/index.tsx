@@ -10,7 +10,7 @@ import {
 import DashboardLayout from "../../Layouts/DashboardLayout";
 import CardAnalytics from "../../components/shared/CardAnalytics";
 import CustomCard from "../../components/shared/CustomCard";
-import UsersTable from "../../components/Dashboard/UsersTable";
+import UserTable from "../../components/Dashboard/Table/UserTable";
 import ReportAreaChart from "../../components/Dashboard/ReportAreaChart";
 import { useRoutes } from "react-router-dom";
 
@@ -41,7 +41,7 @@ const Dashboard = () => {
             />
           </Grid>
           <Grid xs={12} sm={6} md={4} lg={3}>
-            <CardAnalytics title="No Of Queries" count="0" link="/support" />
+            <CardAnalytics title="Support" count="0" link="/support" />
           </Grid>
         </Grid>
 
@@ -54,7 +54,7 @@ const Dashboard = () => {
               <Grid />
             </Grid>
             <CustomCard sx={{ mt: 1 }}>
-              <UsersTable />
+              <UserTable />
             </CustomCard>
           </Grid>
           <Grid xs={12} md={5} lg={4}>

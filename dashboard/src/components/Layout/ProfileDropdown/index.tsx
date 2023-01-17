@@ -5,7 +5,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import PersonIcon from "@mui/icons-material/Person";
 
 const list = [
-  { id: 1, text: "Settings" },
+  { id: 1, text: "Settings", link: "/setting" },
   { id: 2, text: "Logout" },
 ];
 

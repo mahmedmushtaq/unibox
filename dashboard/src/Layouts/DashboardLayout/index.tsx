@@ -15,16 +15,15 @@ import SchoolIcon from "@mui/icons-material/School";
 import AbcIcon from "@mui/icons-material/Abc";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import { NavLink, useLocation } from "react-router-dom";
+import { drawerNavigation } from "../../utilities/global/constants";
 
 interface IProps {
   children: React.ReactNode | React.ReactNode[];
+  heading?: string;
 }
 
-const DashboardLayout = ({ children }: IProps) => {
+const DashboardLayout = ({ children, heading }: IProps) => {
   const [open, setOpen] = useState(true);
-  const [selectedNavigation, setSelectedNavigation] = useState(
-    drawerNavigation[0]
-  );
   const location = useLocation();
 
   const handleDrawerOpen = () => {
@@ -128,7 +127,6 @@ const DashboardLayout = ({ children }: IProps) => {
                   ),
                 }}
                 text={!open ? "" : item.text}
-                onClick={() => setSelectedNavigation(item)}
               />
             </NavLink>
           ))}
@@ -136,17 +134,17 @@ const DashboardLayout = ({ children }: IProps) => {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, py: 3, px: 5 }}>
         <DrawerHeader />
-        {children}
+        <Box>
+          {heading && (
+            <Typography variant="h6" sx={{ mb: 2 }}>
+              {heading}
+            </Typography>
+          )}
+          {children}
+        </Box>
       </Box>
     </Box>
   );
 };
-
-const drawerNavigation = [
-  { id: 1, Icon: ViewComfyIcon, text: "Dashboard", link: "/dashboard" },
-  { id: 2, Icon: AbcIcon, text: "University", link: "/university" },
-  { id: 3, Icon: SchoolIcon, text: "Admission", link: "/admission" },
-  { id: 4, Icon: SupportAgentIcon, text: "Support", link: "/support" },
-];
 
 export default DashboardLayout;

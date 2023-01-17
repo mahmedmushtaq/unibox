@@ -12,6 +12,7 @@ import Support from "../pages/Support";
 import Admission from "../pages/Admission";
 import University from "../pages/University";
 import User from "../pages/User";
+import Setting from "../pages/Setting";
 
 const Routes = () => {
   return (
@@ -25,6 +26,7 @@ const Routes = () => {
             <Route path="/support" element={<Support />} />
             <Route path="/admission" element={<Admission />} />
             <Route path="/university" element={<University />} />
+            <Route path="/setting" element={<Setting />} />
             <Route path="/user" element={<User />} />
           </RoutesWrapper>
         </BrowserRouter>
