@@ -6,7 +6,7 @@ import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
+import Link from "next/link";
 import ListItemText from "@mui/material/ListItemText";
 import CloseIcon from "@mui/icons-material/Close";
 import SecondaryButton from "../shared/SecondaryButton";
@@ -15,7 +15,7 @@ import { Unstable_Grid2 as Grid } from "@mui/material";
 interface IProps {
   open: boolean;
   toggleDrawer: () => void;
-  navbarLinks: { id: number; text: string }[];
+  navbarLinks: { id: number; text: string; link: string }[];
 }
 const logo = "/assets/logo-1500h.png";
 
@@ -39,10 +39,15 @@ const CustomDrawer = ({ open, toggleDrawer, navbarLinks }: IProps) => {
         </Grid>
       </Grid>
       <List>
-        {navbarLinks.map((links) => (
-          <ListItem key={links.id} disablePadding>
+        {navbarLinks.map((linkItem) => (
+          <ListItem
+            component={Link}
+            href={linkItem.link}
+            key={linkItem.id}
+            disablePadding
+          >
             <ListItemButton>
-              <ListItemText primary={links.text} />
+              <ListItemText primary={linkItem.text} />
             </ListItemButton>
           </ListItem>
         ))}

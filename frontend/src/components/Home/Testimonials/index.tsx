@@ -1,8 +1,13 @@
 import TestimonialSlide from "./TestimonialSlide";
-import Carousal from "../../shared/Carousal";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation } from "swiper";
+
 import HeadingText from "../../shared/HeadingText";
 import { useRef } from "react";
 import { ICarousalRef } from "../../../global/types";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/autoplay";
 
 const Testimonials = () => {
   const carousalRef = useRef<ICarousalRef>();
@@ -31,19 +36,26 @@ const Testimonials = () => {
         />
 
         <div>
-          <Carousal ref={carousalRef}>
+          <Swiper
+            modules={[Pagination, Autoplay]}
+            slidesPerView={1}
+            pagination={{ clickable: true }}
+            autoplay={{ delay: 2000 }}
+          >
             {testimonialsList.map((testimonial) => (
-              <TestimonialSlide
-                key={testimonial.id}
-                handleNext={handleNext}
-                handleBack={handleBack}
-                bgColor={testimonial.bgColor}
-                author={testimonial.author}
-                imgSrc={testimonial.imgSrc}
-                testimonial={testimonial.testimonial}
-              />
+              <SwiperSlide key={testimonial.id}>
+                <TestimonialSlide
+                  key={testimonial.id}
+                  handleNext={handleNext}
+                  handleBack={handleBack}
+                  bgColor={testimonial.bgColor}
+                  author={testimonial.author}
+                  imgSrc={testimonial.imgSrc}
+                  testimonial={testimonial.testimonial}
+                />
+              </SwiperSlide>
             ))}
-          </Carousal>
+          </Swiper>
         </div>
       </div>
     </>

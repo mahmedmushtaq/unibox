@@ -20,7 +20,7 @@ export default function Home() {
           content="Unibox help you to find your dream universitiy with all of the necessary criteria"
         />
       </Head>
-      <NavBar />
+
       <FrontLayout>
         <div>
           <Header />
@@ -29,7 +29,6 @@ export default function Home() {
           <SimpleInfoBox />
         </div>
       </FrontLayout>
-      <Footer />
     </Box>
   );
 }

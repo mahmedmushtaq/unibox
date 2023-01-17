@@ -1,5 +1,7 @@
 import { Box, Container, SxProps } from "@mui/material";
 import { ReactNode } from "react";
+import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
 
 const containerSx: SxProps = {
   width: "100%",
@@ -16,9 +18,13 @@ const FrontLayout = ({
   sx?: SxProps;
 }) => {
   return (
-    <Container maxWidth="xl">
-      <Box sx={{ ...containerSx, ...sx }}>{children}</Box>
-    </Container>
+    <>
+      <NavBar />
+      <Container maxWidth="xl">
+        <Box sx={{ ...containerSx, ...sx }}>{children}</Box>
+        <Footer />
+      </Container>
+    </>
   );
 };
 

@@ -52,6 +52,7 @@ declare module "@mui/material/styles/createPalette" {
     colors: { darkblue: string; lightgreen: string };
   }
 
+  //@ts-ignore
   interface PaletteOptions extends MuiPaletteOptions {
     colors: { darkblue: string; lightgreen: string };
   }
