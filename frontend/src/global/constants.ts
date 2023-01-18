@@ -19,7 +19,22 @@ export const featuresList = [
   },
 ];
 
-export const categoriesList = [
+interface ICategories {
+  id: number;
+  icon: any;
+  text: string;
+  innerList: {
+    id: number;
+    type: "list" | "checkbox" | "popup";
+    icon?: any;
+    endText?: string;
+    innerList?: { id: number; text: string }[];
+    popupValue?: { key: "currencyChanger" };
+    text: string;
+  }[];
+}
+
+export const categoriesList: ICategories[] = [
   {
     id: 1,
     icon: GridOnIcon,
@@ -40,7 +55,7 @@ export const categoriesList = [
     innerList: [
       {
         id: 21,
-        type: "select",
+        type: "checkbox",
         text: "United Kingdom",
         endText: "234",
         innerList: [{ id: 211, text: "Wales" }],
@@ -52,8 +67,8 @@ export const categoriesList = [
     icon: AttachMoneyOutlinedIcon,
     text: "Tution Fee",
     innerList: [
-      { id: 31, text: "0-500", type: "select", endText: "2134" },
-      { id: 32, text: "500-1000", type: "select", endText: "234" },
+      { id: 31, text: "0-500", type: "checkbox", endText: "2134" },
+      { id: 32, text: "500-1000", type: "checkbox", endText: "234" },
       {
         id: 33,
         text: "change currency",
@@ -67,24 +82,24 @@ export const categoriesList = [
     icon: WatchLaterOutlinedIcon,
     text: "Duration",
     innerList: [
-      { id: 41, text: "Less than 1 year", type: "select", endText: "234" },
-      { id: 42, text: "1 year", type: "select", endText: "234" },
+      { id: 41, text: "Less than 1 year", type: "checkbox", endText: "234" },
+      { id: 42, text: "1 year", type: "checkbox", endText: "234" },
       {
         id: 43,
         text: "1½ years",
-        type: "select",
+        type: "checkbox",
         endText: "234",
       },
       {
         id: 44,
         text: "2 years",
-        type: "select",
+        type: "checkbox",
         endText: "234",
       },
       {
         id: 45,
         text: "More than 2 years",
-        type: "select",
+        type: "checkbox",
         endText: "234",
       },
     ],
@@ -97,26 +112,26 @@ export const categoriesList = [
       {
         id: 51,
         text: "M.Sc master of science",
-        type: "select",
+        type: "checkbox",
         endText: "234",
       },
-      { id: 52, text: "M.A master of Arts", type: "select", endText: "234" },
+      { id: 52, text: "M.A master of Arts", type: "checkbox", endText: "234" },
       {
         id: 53,
         text: "MBA master of Business Administration",
-        type: "select",
+        type: "checkbox",
         endText: "234",
       },
       {
         id: 54,
         text: "LLM Master of laws",
-        type: "select",
+        type: "checkbox",
         endText: "234",
       },
       {
         id: 55,
         text: "M.Phil master of philosphy",
-        type: "select",
+        type: "checkbox",
         endText: "234",
       },
     ],

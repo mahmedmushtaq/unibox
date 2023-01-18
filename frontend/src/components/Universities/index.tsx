@@ -50,7 +50,7 @@ const Universities = () => {
               maxWidth: { xs: "100%", md: 320 },
               borderTop: "3px solid red",
               borderRadius: { md: 5 },
-              maxHeight: { md: "75%" },
+              maxHeight: { md: "85%" },
               overflowY: "auto",
               overflowX: "hidden",
               mx: "auto",

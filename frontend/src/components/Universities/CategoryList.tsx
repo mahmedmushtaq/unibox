@@ -9,6 +9,9 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Checkbox,
+  FormGroup,
+  FormControlLabel,
 } from "@mui/material";
 import GridOnIcon from "@mui/icons-material/GridOn";
 import TextWithIcon from "../shared/TextWithIcon";
@@ -23,7 +26,7 @@ import { categoriesList } from "../../global/constants";
 const CategoryList = () => {
   return (
     <>
-      <Card sx={{ px: 1 }}>
+      <Card sx={{ px: 1, pb: 2 }}>
         {categoriesList.map((category, index) => (
           <AccordionWrapper
             key={category.id}
@@ -32,7 +35,7 @@ const CategoryList = () => {
                 <TextWithIcon
                   text={category.text}
                   icon={<category.icon />}
-                  sx={{ pb: 2 }}
+                  sx={{ pb: 2, pt: 2 }}
                 />
                 {index + 1 < categoriesList.length && (
                   <Divider sx={{ width: "100%" }} />
@@ -40,7 +43,32 @@ const CategoryList = () => {
               </Box>
             }
           >
-            <Box sx={{ px: 2 }}>children</Box>
+            <Box sx={{ px: 2 }}>
+              {category.innerList.map((list) => (
+                <Box key={list.id}>
+                  {list.type === "list" ? (
+                    <TextWithIcon icon={<list.icon />} text={list.text} />
+                  ) : list.type === "checkbox" ? (
+                    <FormGroup>
+                      <FormControlLabel
+                        control={<Checkbox defaultChecked />}
+                        label={
+                          <Typography sx={{ ml: 3 }}>{list.text}</Typography>
+                        }
+                      />
+                    </FormGroup>
+                  ) : (
+                    <Typography
+                      fontWeight="bold"
+                      sx={{ mt: 1, cursor: "pointer" }}
+                      key={list.id}
+                    >
+                      {list.text}
+                    </Typography>
+                  )}
+                </Box>
+              ))}
+            </Box>
           </AccordionWrapper>
         ))}
       </Card>
