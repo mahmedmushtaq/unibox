@@ -66,7 +66,7 @@ const Subscription = () => {
           alt="image"
           src="/assets/unibox-subscription.png"
           className="home-image5"
-          style={{ maxWidth: 589, minWidth: 350 }}
+          style={{ width: "100%", height: "100%" }}
         />
       </Grid>
     </Grid>

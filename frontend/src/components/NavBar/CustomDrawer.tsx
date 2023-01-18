@@ -45,10 +45,12 @@ const CustomDrawer = ({ open, toggleDrawer, navbarLinks }: IProps) => {
             href={linkItem.link}
             key={linkItem.id}
             disablePadding
+            sx={{ px: 3 }}
           >
-            <ListItemButton>
-              <ListItemText primary={linkItem.text} />
-            </ListItemButton>
+            <ListItemText
+              sx={{ color: "primary.main", py: 1 }}
+              primary={linkItem.text}
+            />
           </ListItem>
         ))}
       </List>

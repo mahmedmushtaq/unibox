@@ -6,13 +6,14 @@ import Footer from "../components/Footer";
 const containerSx: SxProps = {
   width: "100%",
   position: "relative",
-
+  bgcolor: "background.default",
+  minHeight: "100vh",
   overflowX: "hidden",
 };
 
 const FrontLayout = ({
   children,
-  sx = { bgcolor: "background.default", minHeight: "100vh" },
+  sx = {},
 }: {
   children: ReactNode;
   sx?: SxProps;

@@ -56,7 +56,7 @@ const contentData = {
   logo: "/assets/unibox-navbar.svg",
   navbarLinks: [
     { id: 1, text: "Home", link: "/" },
-    { id: 3, text: "Admission News", link: "/news" },
+    // { id: 2, text: "Admission", link: "/admissions" },
   ],
 };
 
