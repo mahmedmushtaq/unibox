@@ -16,10 +16,6 @@ import {
 import GridOnIcon from "@mui/icons-material/GridOn";
 import TextWithIcon from "../shared/TextWithIcon";
 import AccordionWrapper from "../shared/AccordionWrapper";
-import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
-import AttachMoneyOutlinedIcon from "@mui/icons-material/AttachMoneyOutlined";
-import WatchLaterOutlinedIcon from "@mui/icons-material/WatchLaterOutlined";
-import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import StarBorderPurple500OutlinedIcon from "@mui/icons-material/StarBorderPurple500Outlined";
 import { categoriesList } from "../../global/constants";
 

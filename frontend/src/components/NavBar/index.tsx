@@ -9,7 +9,7 @@ const NavBar = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const toggleDrawer = () => setOpenDrawer(!openDrawer);
   return (
-    <Box sx={{ flexGrow: 1, mx: "auto", my: 2 }}>
+    <Box sx={{ flexGrow: 1, px: 2, mx: "auto", my: 2 }}>
       <Grid container alignItems={"center"} justifyContent={"space-between"}>
         <Grid xs={2} sm={3}>
           <img alt={"logo"} src={contentData.logo} />
@@ -36,6 +36,7 @@ const NavBar = () => {
         <Grid xs={10} textAlign="end" sm={3}>
           <SecondaryButton
             sx={{ display: { xs: "none", sm: "block" }, ml: "auto" }}
+            link="/course"
           />
           <Box sx={{ display: { xs: "block", sm: "none" } }}>
             <MenuIcon onClick={toggleDrawer} />
@@ -56,7 +57,7 @@ const contentData = {
   logo: "/assets/unibox-navbar.svg",
   navbarLinks: [
     { id: 1, text: "Home", link: "/" },
-    // { id: 2, text: "Admission", link: "/admissions" },
+    { id: 2, text: "About", link: "/about" },
   ],
 };
 

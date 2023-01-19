@@ -21,6 +21,7 @@ interface IProps {
   onClick?: () => void;
   textStyle?: SxProps;
   link?: string;
+  iconSx?: SxProps;
 }
 
 const TextWithIcon = ({
@@ -28,6 +29,7 @@ const TextWithIcon = ({
   text,
   sx,
   onClick,
+  iconSx,
   endIcon,
   textStyle,
   link,
@@ -35,9 +37,9 @@ const TextWithIcon = ({
   return (
     <List sx={sx}>
       <ListItem disablePadding>
-        {icon && <ListItemIcon>{icon}</ListItemIcon>}
+        {icon && <ListItemIcon sx={iconSx}>{icon}</ListItemIcon>}
         <ListItemText sx={textStyle} primary={text} />
-        {endIcon && <ListItemIcon>{endIcon}</ListItemIcon>}
+        {endIcon && <ListItemIcon sx={iconSx}>{endIcon}</ListItemIcon>}
       </ListItem>
     </List>
   );

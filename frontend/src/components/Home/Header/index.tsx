@@ -38,13 +38,13 @@ const Header = () => {
 
           <Box my={2} sx={{ width: "100%" }}>
             <TextField
-              placeholder="Search universities By Name, Location, and category"
+              placeholder="Search courses By Name, Location, and category"
               fullWidth
             />
             <SecondaryButton
               fullWidth
               sx={{ mt: 2 }}
-              text="Search Universities"
+              text="Search Courses"
             />
           </Box>
           <List>

@@ -1,11 +1,12 @@
 import { SxProps, Typography, TypographyProps } from "@mui/material";
-import { ReactNode } from "react";
+import { ElementType, ReactNode } from "react";
 
 interface IProps extends TypographyProps {
   text: string | ReactNode;
-  secondaryText?: string;
+  secondaryText?: string | ReactNode;
   text1?: string | ReactNode;
   secondarySx?: SxProps;
+  component?: any;
 }
 
 const HeadingText = ({
@@ -14,10 +15,11 @@ const HeadingText = ({
   text1,
   variant = "h4",
   secondarySx = {},
+  component,
   ...restProps
 }: IProps) => {
   return (
-    <Typography {...restProps} variant={variant}>
+    <Typography component={component as any} {...restProps} variant={variant}>
       {text}
       <Typography
         sx={{ mx: 1, ...secondarySx }}

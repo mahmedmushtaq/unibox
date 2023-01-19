@@ -3,7 +3,7 @@ import GridViewIcon from "@mui/icons-material/GridView";
 import CourseGeneralDetail from "./CourseGeneralDetail";
 import CategoryList from "./CategoryList";
 
-const Universities = () => {
+const CoursesList = () => {
   return (
     <Box>
       <Grid
@@ -137,4 +137,4 @@ const Universities = () => {
   );
 };
 
-export default Universities;
+export default CoursesList;

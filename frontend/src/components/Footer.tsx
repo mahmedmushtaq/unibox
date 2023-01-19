@@ -3,6 +3,7 @@ import { Container, Unstable_Grid2 as Grid, Typography } from "@mui/material";
 import { Facebook, Twitter } from "@mui/icons-material";
 import Subscription from "./Home/Subscription";
 import CopyRight from "./shared/CopyRight";
+import Link from "next/link";
 
 const Footer = ({ hideSubscription }: { hideSubscription?: boolean }) => {
   return (
@@ -51,10 +52,24 @@ const Footer = ({ hideSubscription }: { hideSubscription?: boolean }) => {
               <Typography variant="h6">Links</Typography>
             </Grid>
             <Grid>
-              <Typography>Home</Typography>
+              <Typography
+                component={Link}
+                href="/"
+                color="primary"
+                sx={{ textDecoration: "none" }}
+              >
+                Home
+              </Typography>
             </Grid>
             <Grid>
-              <Typography>About</Typography>
+              <Typography
+                component={Link}
+                href="/about"
+                color="primary"
+                sx={{ textDecoration: "none" }}
+              >
+                About
+              </Typography>
             </Grid>
             <Grid>
               <Typography>Contact</Typography>

@@ -82,7 +82,7 @@ const Features = () => {
 const featuresList = [
   {
     id: 1,
-    heading: "Search universities and find criteria info",
+    heading: "Search  courses and find criteria info",
     largeSectionHeading: "Your favorite universities info at your fingertips.",
     largeSectionImgSrc: "/assets/section-image1-1200w.png",
     largeSectionDescription:
