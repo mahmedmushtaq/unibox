@@ -56,7 +56,7 @@ const CustomDrawer = ({ open, toggleDrawer, navbarLinks }: IProps) => {
       </List>
 
       <Box mx={2}>
-        <SecondaryButton />
+        <SecondaryButton link="/course" />
       </Box>
     </Box>
   );

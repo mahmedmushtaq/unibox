@@ -13,7 +13,7 @@ const CoursesList = () => {
         sx={{ minHeight: 130, bgcolor: "white", width: "100%" }}
       >
         <Grid xs={0} md={4} lg={3.2} />
-        <Grid xs={12} md={7} lg={6} sx={{ py: 3 }}>
+        <Grid xs={12} md={7} lg={6} sx={{ px: { xs: 3, md: 0 }, py: 3 }}>
           <Typography variant="h5">
             Masters degree from all around the world
           </Typography>
