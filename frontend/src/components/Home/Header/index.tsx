@@ -41,11 +41,7 @@ const Header = () => {
               placeholder="Search courses By Name, Location, and category"
               fullWidth
             />
-            <SecondaryButton
-              fullWidth
-              sx={{ mt: 2 }}
-              text="Search Courses"
-            />
+            <SecondaryButton fullWidth sx={{ mt: 2 }} text="Search Courses" />
           </Box>
           <List>
             {featuresList.map((item) => (
@@ -61,7 +57,7 @@ const Header = () => {
           </List>
         </Box>
       </Grid>
-      <Grid md={6} sx={{ mt: { xs: 2, md: 0 } }}>
+      <Grid md={6} sx={{ mt: { xs: 2, md: 0 }, textAlign: "center" }}>
         <img
           alt="image"
           src="/assets/hero%20image-1200w.png"

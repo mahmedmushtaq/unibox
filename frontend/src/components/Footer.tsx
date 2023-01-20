@@ -1,5 +1,10 @@
 import React from "react";
-import { Container, Unstable_Grid2 as Grid, Typography } from "@mui/material";
+import {
+  Container,
+  Unstable_Grid2 as Grid,
+  Typography,
+  Box,
+} from "@mui/material";
 import { Facebook, Twitter } from "@mui/icons-material";
 import Subscription from "./Home/Subscription";
 import CopyRight from "./shared/CopyRight";
@@ -9,7 +14,7 @@ const Footer = ({ hideSubscription }: { hideSubscription?: boolean }) => {
   return (
     <>
       {!hideSubscription && <Subscription />}
-      <Container maxWidth="xl">
+      <Box>
         <Grid
           container
           justifyContent="space-between"
@@ -83,7 +88,7 @@ const Footer = ({ hideSubscription }: { hideSubscription?: boolean }) => {
           </Grid>
         </Grid>
         <CopyRight />
-      </Container>
+      </Box>
     </>
   );
 };
