@@ -12,6 +12,7 @@ import {
   ListItemText,
   SxProps,
 } from "@mui/material";
+import Link from "next/link";
 
 interface IProps {
   icon?: string | ReactNode;
@@ -21,21 +22,35 @@ interface IProps {
   onClick?: () => void;
   textStyle?: SxProps;
   link?: string;
+  linkColor?: "primary" | "secondary";
   iconSx?: SxProps;
 }
 
 const TextWithIcon = ({
   icon,
   text,
-  sx,
+  sx = {},
   onClick,
   iconSx,
   endIcon,
   textStyle,
+  linkColor = "primary",
   link,
 }: IProps) => {
+  const optionalProps = link ? { component: Link, href: link } : {};
   return (
-    <List sx={sx}>
+    <List
+      sx={{
+        textDecoration: "none",
+        color: !linkColor
+          ? undefined
+          : linkColor === "primary"
+          ? "primary.main"
+          : "secondary.main",
+        ...sx,
+      }}
+      {...optionalProps}
+    >
       <ListItem disablePadding>
         {icon && <ListItemIcon sx={iconSx}>{icon}</ListItemIcon>}
         <ListItemText sx={textStyle} primary={text} />

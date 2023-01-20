@@ -21,7 +21,7 @@ const Course = () => {
         />
       }
     >
-      <Box px={3} py={5}>
+      <Box pt={10} sx={{ px: { xs: 5, md: 10 } }}>
         <Grid
           container
           justifyContent="space-between"

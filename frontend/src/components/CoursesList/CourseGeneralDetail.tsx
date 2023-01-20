@@ -2,6 +2,8 @@ import { Box, Card, Unstable_Grid2 as Grid, Typography } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import HeadingText from "../shared/HeadingText";
 import TextWithIcon from "../shared/TextWithIcon";
+import Link from "next/link";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 interface IProps {
   heading: string;
@@ -13,6 +15,7 @@ interface IProps {
   universityLocation: string;
   admissionOpenDate: string;
   admissionCloseDate: string;
+  link: string;
 }
 
 const CourseGeneralDetail = ({
@@ -25,6 +28,7 @@ const CourseGeneralDetail = ({
   universityName,
   admissionCloseDate,
   admissionOpenDate,
+  link,
 }: IProps) => {
   return (
     <Card
@@ -42,6 +46,7 @@ const CourseGeneralDetail = ({
           endIcon={<FavoriteBorderIcon htmlColor="red" />}
           textStyle={{ pl: 3, textAlign: "start" }}
           text={heading}
+          link={link}
         />
       </Box>
 
@@ -60,6 +65,15 @@ const CourseGeneralDetail = ({
           >
             {summary}
           </Typography>
+          <Box maxWidth={70}>
+            <TextWithIcon
+              text="Open"
+              link={link}
+              linkColor="secondary"
+              endIcon={<OpenInNewIcon color="secondary" />}
+              iconSx={{ minWidth: 0 }}
+            />
+          </Box>
         </Grid>
         <Grid xs={12} sm={3}>
           <Typography variant="h6" sx={{ fontSize: "1.1rem" }}>
