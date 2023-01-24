@@ -3,14 +3,16 @@ import { Button } from "@mui/material";
 import CustomMenuList from "../../shared/CustomMenuList";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import PersonIcon from "@mui/icons-material/Person";
+import { useNavigate } from "react-router-dom";
 
 const list = [
   { id: 1, text: "Settings", link: "/setting" },
-  { id: 2, text: "Logout" },
+  { id: 2, text: "Sign Out", link: "/sign-out" },
 ];
 
 const ProfileDropdown = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const navigate = useNavigate();
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);

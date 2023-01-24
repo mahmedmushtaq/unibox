@@ -4,7 +4,7 @@ import {
   School as SchoolIcon,
   SupportAgent as SupportAgentIcon,
   Group as GroupIcon,
-  Settings as SettingsIcon
+  Settings as SettingsIcon,
 } from "@mui/icons-material";
 
 export const drawerNavigation = [
@@ -15,3 +15,5 @@ export const drawerNavigation = [
   { id: 5, Icon: SupportAgentIcon, text: "Support", link: "/support" },
   { id: 6, Icon: SettingsIcon, text: "Setting", link: "/setting" },
 ];
+
+export const SAVE_PRIVATE_PATH_FOR_REDIRECT = "redirectPath";

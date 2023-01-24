@@ -12,7 +12,6 @@ import CardAnalytics from "../../components/shared/CardAnalytics";
 import CustomCard from "../../components/shared/CustomCard";
 import UserTable from "../../components/Dashboard/Table/UserTable";
 import ReportAreaChart from "../../components/Dashboard/ReportAreaChart";
-import { useRoutes } from "react-router-dom";
 
 const Dashboard = () => {
   return (
