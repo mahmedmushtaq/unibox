@@ -1,0 +1,163 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+    serverless
+
+    Sample SAM Template for serverless
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+    Function:
+        Timeout: 100
+        Architectures:
+            - x86_64
+        Runtime: nodejs18.x
+
+Resources:
+    CategoriesFunction:
+        Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+        Properties:
+            CodeUri: src/handlers/categories/
+            Handler: list.handler
+            Policies:
+                # Give Create/Read/Update/Delete Permissions to the CategoriesTable
+                - DynamoDBCrudPolicy:
+                      TableName: !Ref CategoriesTable
+            Environment:
+                Variables:
+                    # Make table name accessible as environment variable from function code during execution
+                    CATEGORIES_TABLE: !Ref CategoriesTable
+            Events:
+                Categories:
+                    Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+                    Properties:
+                        Path: /categories
+                        Method: get
+        Metadata: # Manage esbuild properties
+            BuildMethod: esbuild
+            BuildProperties:
+                Minify: true
+                Target: es2020
+                Sourcemap: true
+                EntryPoints:
+                    - list.ts
+
+    CategoriesPutFunction:
+        Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+        Properties:
+            CodeUri: src/handlers/categories/
+            Handler: put.handler
+            Policies:
+                # Give Create/Read/Update/Delete Permissions to the CategoriesTable
+                - DynamoDBCrudPolicy:
+                      TableName: !Ref CategoriesTable
+            Environment:
+                Variables:
+                    # Make table name accessible as environment variable from function code during execution
+                    CATEGORIES_TABLE: !Ref CategoriesTable
+
+            Events:
+                AddCategories:
+                    Type: Api
+                    Properties:
+                        Path: /categories/add
+                        Method: post
+        Metadata: # Manage esbuild properties
+            BuildMethod: esbuild
+            BuildProperties:
+                Minify: true
+                Target: es2020
+                Sourcemap: true
+                EntryPoints:
+                    - put.ts
+    CategoriesDeleteFunction:
+        Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+        Properties:
+            CodeUri: src/handlers/categories/
+            Handler: delete.handler
+            Policies:
+                # Give Create/Read/Update/Delete Permissions to the CategoriesTable
+                - DynamoDBCrudPolicy:
+                      TableName: !Ref CategoriesTable
+            Environment:
+                Variables:
+                    # Make table name accessible as environment variable from function code during execution
+                    CATEGORIES_TABLE: !Ref CategoriesTable
+
+            Events:
+                DeleteCategories:
+                    Type: Api
+                    Properties:
+                        Path: /categories/delete/{id}
+                        Method: delete
+        Metadata: # Manage esbuild properties
+            BuildMethod: esbuild
+            BuildProperties:
+                Minify: true
+                Target: es2020
+                Sourcemap: true
+                EntryPoints:
+                    - delete.ts
+    AddSubCategoriesFunction:
+        Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+        Properties:
+            CodeUri: src/handlers/categories/
+            Handler: subcategories.handler
+            Policies:
+                # Give Create/Read/Update/Delete Permissions to the CategoriesTable
+                - DynamoDBCrudPolicy:
+                      TableName: !Ref CategoriesTable
+            Environment:
+                Variables:
+                    # Make table name accessible as environment variable from function code during execution
+                    CATEGORIES_TABLE: !Ref CategoriesTable
+
+            Events:
+                DeleteCategories:
+                    Type: Api
+                    Properties:
+                        Path: /subcategories/add
+                        Method: POST
+        Metadata: # Manage esbuild properties
+            BuildMethod: esbuild
+            BuildProperties:
+                Minify: true
+                Target: es2020
+                Sourcemap: true
+                EntryPoints:
+                    - subcategories.ts
+  
+    CategoriesTable:
+        Type: AWS::Serverless::SimpleTable
+        Properties:
+            PrimaryKey:
+                Name: id
+                Type: String
+            ProvisionedThroughput:
+                ReadCapacityUnits: 2
+                WriteCapacityUnits: 2
+
+    ApplicationResourceGroup:
+        Type: AWS::ResourceGroups::Group
+        Properties:
+            Name:
+                Fn::Join:
+                    - ''
+                    - - ApplicationInsights-SAM-
+                      - Ref: AWS::StackName
+            ResourceQuery:
+                Type: CLOUDFORMATION_STACK_1_0
+    ApplicationInsightsMonitoring:
+        Type: AWS::ApplicationInsights::Application
+        Properties:
+            ResourceGroupName:
+                Fn::Join:
+                    - ''
+                    - - ApplicationInsights-SAM-
+                      - Ref: AWS::StackName
+            AutoConfigurationEnabled: 'true'
+        DependsOn: ApplicationResourceGroup
+Outputs:
+    WebEndpoint:
+        Description: 'API Gateway endpoint URL for Prod stage'
+        Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/'
