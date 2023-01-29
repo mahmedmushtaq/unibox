@@ -7,7 +7,7 @@ import { badRequestError, httpResponse } from '../../utils/response';
 const client = new DynamoDBClient({});
 const ddbDocClient = DynamoDBDocumentClient.from(client);
 
-const tableName = process.env.CATEGORIES_TABLE;
+const tableName = process.env.UNIVERSITY_TABLE;
 
 export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     if (event.httpMethod !== 'DELETE') {

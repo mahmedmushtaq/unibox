@@ -7,6 +7,11 @@ Description: >
 
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
+    Api:
+        Cors:
+            AllowMethods: "'GET,POST,DELETE,OPTIONS'"
+            AllowHeaders: "'content-type'"
+            AllowOrigin: "'*'"
     Function:
         Timeout: 100
         Architectures:
@@ -60,7 +65,7 @@ Resources:
                 AddCategories:
                     Type: Api
                     Properties:
-                        Path: /categories/add
+                        Path: /category
                         Method: post
         Metadata: # Manage esbuild properties
             BuildMethod: esbuild
@@ -88,7 +93,7 @@ Resources:
                 DeleteCategories:
                     Type: Api
                     Properties:
-                        Path: /categories/delete/{id}
+                        Path: /category/{id}
                         Method: delete
         Metadata: # Manage esbuild properties
             BuildMethod: esbuild
@@ -116,7 +121,7 @@ Resources:
                 DeleteCategories:
                     Type: Api
                     Properties:
-                        Path: /subcategories/add
+                        Path: /subcategories
                         Method: POST
         Metadata: # Manage esbuild properties
             BuildMethod: esbuild
@@ -126,8 +131,224 @@ Resources:
                 Sourcemap: true
                 EntryPoints:
                     - subcategories.ts
-  
+
+    AddUniverisityFunction:
+        Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+        Properties:
+            CodeUri: src/handlers/university/
+            Handler: put.handler
+            Policies:
+                # Give Create/Read/Update/Delete Permissions to the CategoriesTable
+                - DynamoDBCrudPolicy:
+                      TableName: !Ref UniversityTable
+            Environment:
+                Variables:
+                    # Make table name accessible as environment variable from function code during execution
+                    UNIVERSITY_TABLE: !Ref UniversityTable
+
+            Events:
+                AddUniversity:
+                    Type: Api
+                    Properties:
+                        Path: /university
+                        Method: POST
+        Metadata: # Manage esbuild properties
+            BuildMethod: esbuild
+            BuildProperties:
+                Minify: true
+                Target: es2020
+                Sourcemap: true
+                EntryPoints:
+                    - put.ts
+
+    UniverisitiesListFunction:
+        Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+        Properties:
+            CodeUri: src/handlers/university/
+            Handler: list.handler
+            Policies:
+                # Give Create/Read/Update/Delete Permissions to the CategoriesTable
+                - DynamoDBCrudPolicy:
+                      TableName: !Ref UniversityTable
+            Environment:
+                Variables:
+                    # Make table name accessible as environment variable from function code during execution
+                    UNIVERSITY_TABLE: !Ref UniversityTable
+
+            Events:
+                ListUniversity:
+                    Type: Api
+                    Properties:
+                        Path: /universities
+                        Method: GET
+        Metadata: # Manage esbuild properties
+            BuildMethod: esbuild
+            BuildProperties:
+                Minify: true
+                Target: es2020
+                Sourcemap: true
+                EntryPoints:
+                    - list.ts
+
+    UniversityDeleteFunction:
+        Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+        Properties:
+            CodeUri: src/handlers/university/
+            Handler: delete.handler
+            Policies:
+                # Give Create/Read/Update/Delete Permissions to the CategoriesTable
+                - DynamoDBCrudPolicy:
+                      TableName: !Ref UniversityTable
+            Environment:
+                Variables:
+                    # Make table name accessible as environment variable from function code during execution
+                    UNIVERSITY_TABLE: !Ref UniversityTable
+
+            Events:
+                DeleteCategories:
+                    Type: Api
+                    Properties:
+                        Path: /university/{id}
+                        Method: delete
+        Metadata: # Manage esbuild properties
+            BuildMethod: esbuild
+            BuildProperties:
+                Minify: true
+                Target: es2020
+                Sourcemap: true
+                EntryPoints:
+                    - delete.ts
+    CourseFunction:
+        Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+        Properties:
+            CodeUri: src/handlers/course/
+            Handler: list.handler
+            Policies:
+                # Give Create/Read/Update/Delete Permissions to the CategoriesTable
+                - DynamoDBCrudPolicy:
+                      TableName: !Ref CoursesTable
+            Environment:
+                Variables:
+                    # Make table name accessible as environment variable from function code during execution
+                    COURSES_TABLE: !Ref CoursesTable
+            Events:
+                Categories:
+                    Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+                    Properties:
+                        Path: /courses
+                        Method: get
+        Metadata: # Manage esbuild properties
+            BuildMethod: esbuild
+            BuildProperties:
+                Minify: true
+                Target: es2020
+                Sourcemap: true
+                EntryPoints:
+                    - list.ts
+    CourseByIdFunction:
+        Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+        Properties:
+            CodeUri: src/handlers/course/
+            Handler: getById.handler
+            Policies:
+                # Give Create/Read/Update/Delete Permissions to the CategoriesTable
+                - DynamoDBCrudPolicy:
+                      TableName: !Ref CoursesTable
+            Environment:
+                Variables:
+                    # Make table name accessible as environment variable from function code during execution
+                    COURSES_TABLE: !Ref CoursesTable
+            Events:
+                Categories:
+                    Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+                    Properties:
+                        Path: /course/{id}
+                        Method: get
+        Metadata: # Manage esbuild properties
+            BuildMethod: esbuild
+            BuildProperties:
+                Minify: true
+                Target: es2020
+                Sourcemap: true
+                EntryPoints:
+                    - getById.ts                 
+
+    CoursePutFunction:
+        Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+        Properties:
+            CodeUri: src/handlers/course/
+            Handler: put.handler
+            Policies:
+                # Give Create/Read/Update/Delete Permissions to the CategoriesTable
+                - DynamoDBCrudPolicy:
+                      TableName: !Ref CoursesTable
+            Environment:
+                Variables:
+                    # Make table name accessible as environment variable from function code during execution
+                    COURSES_TABLE: !Ref CoursesTable
+
+            Events:
+                AddCategories:
+                    Type: Api
+                    Properties:
+                        Path: /course
+                        Method: post
+        Metadata: # Manage esbuild properties
+            BuildMethod: esbuild
+            BuildProperties:
+                Minify: true
+                Target: es2020
+                Sourcemap: true
+                EntryPoints:
+                    - put.ts
+    CourseDeleteFunction:
+        Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+        Properties:
+            CodeUri: src/handlers/course/
+            Handler: delete.handler
+            Policies:
+                # Give Create/Read/Update/Delete Permissions to the CategoriesTable
+                - DynamoDBCrudPolicy:
+                      TableName: !Ref CoursesTable
+            Environment:
+                Variables:
+                    # Make table name accessible as environment variable from function code during execution
+                    COURSES_TABLE: !Ref CoursesTable
+
+            Events:
+                DeleteCategories:
+                    Type: Api
+                    Properties:
+                        Path: /course/{id}
+                        Method: delete
+        Metadata: # Manage esbuild properties
+            BuildMethod: esbuild
+            BuildProperties:
+                Minify: true
+                Target: es2020
+                Sourcemap: true
+                EntryPoints:
+                    - delete.ts
+    CoursesTable:
+        Type: AWS::Serverless::SimpleTable
+        Properties:
+            PrimaryKey:
+                Name: id
+                Type: String
+            ProvisionedThroughput:
+                ReadCapacityUnits: 2
+                WriteCapacityUnits: 2
+
     CategoriesTable:
+        Type: AWS::Serverless::SimpleTable
+        Properties:
+            PrimaryKey:
+                Name: id
+                Type: String
+            ProvisionedThroughput:
+                ReadCapacityUnits: 2
+                WriteCapacityUnits: 2
+    UniversityTable:
         Type: AWS::Serverless::SimpleTable
         Properties:
             PrimaryKey:

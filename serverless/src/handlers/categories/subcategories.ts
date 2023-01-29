@@ -4,6 +4,7 @@ import { DynamoDBDocumentClient, GetCommand, PutCommand } from '@aws-sdk/lib-dyn
 import { badRequestError, httpResponse } from '../../utils/response';
 import { uuid } from 'uuidv4';
 import { removeEmptyFieldFromObj } from '../../utils/helpers';
+import { TGenericObj } from '../../global/type';
 
 const client = new DynamoDBClient({});
 const ddbDocClient = DynamoDBDocumentClient.from(client);
@@ -18,16 +19,16 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
     if (!event.body) {
         return badRequestError('body is required');
     }
-    const { id, name } = JSON.parse(event.body);
+    const { parentCategoryId, name, iconLink } = JSON.parse(event.body);
 
-    if (!id || !name) {
-        return badRequestError('id and name is required');
+    if (!parentCategoryId || !name) {
+        return badRequestError('parentCategoryId and name is required');
     }
 
     // fetch specific item
     const params = {
         TableName: tableName,
-        Key: { id: id },
+        Key: { id: parentCategoryId },
     };
 
     let item;
@@ -39,7 +40,15 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
         console.log('Error', err);
     }
 
-    const subCategories = !!item?.subCategories ? [...item.subCategories, name] : [name];
+    const finalSubcategoryItem: TGenericObj = {};
+    if (iconLink) {
+        finalSubcategoryItem.iconLink = iconLink;
+    }
+    finalSubcategoryItem.name = name;
+
+    const subCategories = !!item?.subCategories
+        ? [...item.subCategories, finalSubcategoryItem]
+        : [finalSubcategoryItem];
 
     // update specific item
     const tableParams = {
