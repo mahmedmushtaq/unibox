@@ -2,8 +2,8 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocumentClient, PutCommand } from '@aws-sdk/lib-dynamodb';
 import { badRequestError, httpResponse } from '../../utils/response';
-import { uuid } from 'uuidv4';
 import { removeEmptyFieldFromObj } from '../../utils/helpers';
+import { randomUUID } from 'crypto';
 
 const client = new DynamoDBClient({});
 const ddbDocClient = DynamoDBDocumentClient.from(client);
@@ -24,10 +24,10 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
         return badRequestError('name is required');
     }
 
-    const item = { id: uuid(), name, iconLink };
+    const item = { id: randomUUID(), name, iconLink };
     const tableParams = {
         TableName: tableName,
-        Item: removeEmptyFieldFromObj(item),
+        Item: removeEmptyFieldFromObj(item), //marshall(removeEmptyFieldFromObj(item)),
     };
 
     try {

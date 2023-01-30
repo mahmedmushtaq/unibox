@@ -19,14 +19,26 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
     }
     const body = JSON.parse(event.body);
 
-    const { name, description, websiteLink, universityId, startDate, categories = [] } = body;
+    const { name, description, websiteLink, universityId, startDate, location, discipline, degreeType, fee, duration } =
+        body;
 
     // categories required the following datapoints
     // location, discripline, degreeType, fee, duration
 
-    if (!name || !description || !websiteLink || !universityId || !startDate || categories.length === 0) {
+    if (
+        !name ||
+        !description ||
+        !websiteLink ||
+        !universityId ||
+        !startDate ||
+        !location ||
+        !discipline ||
+        !degreeType ||
+        !fee ||
+        !duration
+    ) {
         return badRequestError(
-            'name, description, websiteLink, universityId, startDate, categories all Fields are required',
+            'name, description,  websiteLink, universityId, startDate,  location, discipline, degreeType,  fee,  duration, all Fields are required',
         );
     }
 

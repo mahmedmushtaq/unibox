@@ -14,13 +14,3 @@ export const removeEmptyFieldFromObj = (obj: TGenericObj) => {
 export const isEmptyKeyPresent = (obj: TGenericObj) => {
     Object.keys(obj).find((key) => obj[key]);
 };
-
-export const convertItemsToStandard = (items: any) => {
-    return items?.map((item: any) => {
-        const obj: any = {};
-        Object.keys(item).map((key) => {
-            obj[key] = item[key].S;
-        });
-        return obj;
-    });
-};

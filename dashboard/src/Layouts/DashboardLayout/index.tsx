@@ -1,5 +1,12 @@
-import React, { useState } from "react";
-import { CssBaseline, Unstable_Grid2 as Grid } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import {
+  CssBaseline,
+  Unstable_Grid2 as Grid,
+  Button,
+  Card,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -14,15 +21,24 @@ import ProfileDropdown from "../../components/Layout/ProfileDropdown";
 import SchoolIcon from "@mui/icons-material/School";
 import AbcIcon from "@mui/icons-material/Abc";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, Link } from "react-router-dom";
 import { drawerNavigation } from "../../utilities/global/constants";
+import LinkWrapper from "../../components/shared/LinkWrapper";
+import CustomCard from "../../components/shared/CustomCard";
 
 interface IProps {
   children: React.ReactNode | React.ReactNode[];
   heading?: string;
+  addRecordLink?: string;
+  childrenCardBg?: boolean;
 }
 
-const DashboardLayout = ({ children, heading }: IProps) => {
+const DashboardLayout = ({
+  children,
+  heading,
+  addRecordLink,
+  childrenCardBg,
+}: IProps) => {
   const [open, setOpen] = useState(true);
   const location = useLocation();
 
@@ -65,7 +81,7 @@ const DashboardLayout = ({ children, heading }: IProps) => {
               <MenuIcon htmlColor="black" />
             </IconButton>
 
-            <Grid xs={8}>
+            <Grid md={8}>
               <Typography variant="h6" color="black" noWrap component="div">
                 Unibox
               </Typography>
@@ -132,17 +148,31 @@ const DashboardLayout = ({ children, heading }: IProps) => {
           ))}
         </Box>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, py: 3, px: 5 }}>
-        <DrawerHeader />
+      <Grid
+        flexDirection="column"
+        alignItems="center"
+        sx={{ px: 5, py: 5, width: "100%" }}
+      >
         <Box>
-          {heading && (
-            <Typography variant="h6" sx={{ mb: 2 }}>
-              {heading}
-            </Typography>
+          <DrawerHeader />
+
+          {(heading || addRecordLink) && (
+            <Grid container sx={{ mb: 2 }} alignItems="center">
+              {heading && <Typography variant="h6">{heading}</Typography>}
+              {addRecordLink && (
+                <Button variant="contained" sx={{ ml: "auto" }}>
+                  <LinkWrapper
+                    link={addRecordLink}
+                    text="Add Record"
+                    sx={{ color: "white", textDecoration: "none" }}
+                  />
+                </Button>
+              )}
+            </Grid>
           )}
-          {children}
         </Box>
-      </Box>
+        {childrenCardBg ? <CustomCard> {children}</CustomCard> : children}
+      </Grid>
     </Box>
   );
 };

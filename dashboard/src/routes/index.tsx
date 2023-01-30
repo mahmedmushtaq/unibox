@@ -8,32 +8,40 @@ import theme from "../theme";
 import SignIn from "../pages/Authentication/SignIn";
 import SignUp from "../pages/Authentication/SignUp";
 import Dashboard from "../pages/Dashboard";
-import Support from "../pages/Support";
-import Admission from "../pages/Admission";
+import Category from "../pages/Category";
+import Course from "../pages/Course";
 import University from "../pages/University";
-import User from "../pages/User";
 import Setting from "../pages/Setting";
 import ProtectedRoute from "./ProtectedRoute";
 import SignOut from "../pages/Authentication/SignOut";
-import ForgotPassword from "../pages/Authentication/ForgotPassword";
+import AddUniversity from "../pages/University/AddUniversity";
+import AddCategory from "../pages/Category/AddCategory";
+import AddCourse from "../pages/Course/AddCourse";
 
 const Routes = () => {
   const ProtectedDashboard = ProtectedRoute(Dashboard);
-  const ProtectedAdmission = ProtectedRoute(Admission);
+  const ProtectedCourse = ProtectedRoute(Course);
+  const ProtectedAddUniversity = ProtectedRoute(AddUniversity);
+  const ProtectedUniveristy = ProtectedRoute(University);
+  const ProtectedCategory = ProtectedRoute(Category);
+  const ProtectedAddCategory = ProtectedRoute(AddCategory);
+  const ProtectedAddCourse = ProtectedRoute(AddCourse);
   return (
     <div>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <RoutesWrapper>
             <Route path="/" element={ProtectedDashboard} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/sign-up" element={<SignUp />} />
-            <Route path="/support" element={<Support />} />
-            <Route path="/admission" element={ProtectedAdmission} />
-            <Route path="/university" element={<University />} />
+
+            <Route path="/category" element={ProtectedCategory} />
+            <Route path="/category/add" element={ProtectedAddCategory} />
+            <Route path="/course" element={ProtectedCourse} />
+            <Route path="/course/add" element={ProtectedAddCourse} />
+            <Route path="/university" element={ProtectedUniveristy} />
+            <Route path="/university/add" element={ProtectedAddUniversity} />
             <Route path="/setting" element={<Setting />} />
-            <Route path="/user" element={<User />} />
             <Route path="/sign-out" element={<SignOut />} />
           </RoutesWrapper>
         </BrowserRouter>

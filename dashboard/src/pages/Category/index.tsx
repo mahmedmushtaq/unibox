@@ -1,18 +1,18 @@
 import { Box, Typography } from "@mui/material";
 import DashboardLayout from "../../Layouts/DashboardLayout";
-import UniversityTable from "../../components/Dashboard/Table/UniversityTable";
+import SupportUserTable from "../../components/Dashboard/Table/CategoryTable";
 import CustomCard from "../../components/shared/CustomCard";
 
-const University = () => {
+const Category = () => {
   return (
     <DashboardLayout
       childrenCardBg
-      heading="Universities"
-      addRecordLink="/university/add"
+      heading="Categories"
+      addRecordLink="/category/add"
     >
-      <UniversityTable />
+      <SupportUserTable />
     </DashboardLayout>
   );
 };
 
-export default University;
+export default Category;

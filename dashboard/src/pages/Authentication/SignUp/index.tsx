@@ -60,7 +60,7 @@ const SignUp = () => {
   };
 
   const onEmailConfirmation = () => {
-    navigate("/dashboard");
+    navigate("/");
   };
 
   return (

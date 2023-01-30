@@ -2,8 +2,6 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocumentClient, GetCommand, PutCommand } from '@aws-sdk/lib-dynamodb';
 import { badRequestError, httpResponse } from '../../utils/response';
-import { uuid } from 'uuidv4';
-import { removeEmptyFieldFromObj } from '../../utils/helpers';
 import { TGenericObj } from '../../global/type';
 
 const client = new DynamoDBClient({});

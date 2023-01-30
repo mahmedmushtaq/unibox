@@ -121,7 +121,7 @@ Resources:
                 DeleteCategories:
                     Type: Api
                     Properties:
-                        Path: /subcategories
+                        Path: /subcategory
                         Method: POST
         Metadata: # Manage esbuild properties
             BuildMethod: esbuild

@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
 import { Auth } from "aws-amplify";
 import LinkWrapper from "../../../components/shared/LinkWrapper";
 import Alert from "@mui/material/Alert";
 import AuthenticationLayout from "../../../Layouts/AuthenticationLayout";
 import LoadingButton from "../../../components/shared/LoadingButton";
-import { SAVE_PRIVATE_PATH_FOR_REDIRECT } from "../../../utilities/global/constants";
-import { getPreviousVisitedPrivatePath } from "../../../utilities/global/helpers";
 
 const SignIn = () => {
   const [err, setErr] = useState("");
@@ -30,7 +27,7 @@ const SignIn = () => {
     try {
       await Auth.signIn(String(email), String(password));
       //refresh browser
-      window.location.pathname = getPreviousVisitedPrivatePath();
+      window.location.pathname = "/";
     } catch (err) {
       setErr(String(err));
     } finally {

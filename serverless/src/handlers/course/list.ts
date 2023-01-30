@@ -2,7 +2,7 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import { DynamoDBClient, ScanCommand } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocumentClient } from '@aws-sdk/lib-dynamodb';
 import { httpResponse } from '../../utils/response';
-import { convertItemsToStandard } from '../../utils/helpers';
+import { unmarshall } from '@aws-sdk/util-dynamodb';
 
 const client = new DynamoDBClient({});
 const ddbDocClient = DynamoDBDocumentClient.from(client);
@@ -20,13 +20,13 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
     let items;
     try {
         const data = await ddbDocClient.send(new ScanCommand(tableParams));
-        items = data.Items;
+        items = data.Items?.map((item) => unmarshall(item));
     } catch (err) {
         console.log('Error', err);
         throw new Error('[course] Error in retrieving all the courses');
     }
 
     return httpResponse({
-        items: convertItemsToStandard(items),
+        items,
     });
 };

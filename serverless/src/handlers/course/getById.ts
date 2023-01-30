@@ -3,6 +3,7 @@ import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocumentClient, GetCommand } from '@aws-sdk/lib-dynamodb';
 import { badRequestError, httpResponse } from '../../utils/response';
 import { TGenericObj } from '../../global/type';
+import { unmarshall } from '@aws-sdk/util-dynamodb';
 
 const client = new DynamoDBClient({});
 const ddbDocClient = DynamoDBDocumentClient.from(client);
@@ -25,10 +26,10 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
         Key: { id: id },
     };
 
-    let item: TGenericObj = {};
+    let item: any = {};
     try {
         const data = await ddbDocClient.send(new GetCommand(tableParams));
-        item = data.Item as TGenericObj;
+        item = data.Item ? unmarshall(data.Item) : data.Item;
     } catch (err) {
         console.log('Error', err);
         throw new Error('Error in finding the item');

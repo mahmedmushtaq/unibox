@@ -3,7 +3,7 @@ export const httpResponse = (body: { [key: string]: any }, status = 200) => ({
     headers: {
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': '*',
+        'Access-Control-Allow-Methods': 'GET,POST,DELETE,PUT,PATCH,OPTIONS',
     },
     body: JSON.stringify(body),
 });
