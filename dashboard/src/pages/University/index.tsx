@@ -5,10 +5,12 @@ import CustomCard from "../../components/shared/CustomCard";
 
 const University = () => {
   return (
-    <DashboardLayout heading="Universities">
-      <CustomCard>
-        <UniversityTable />
-      </CustomCard>
+    <DashboardLayout
+      childrenCardBg
+      heading="Universities"
+      addRecordLink="/university/add"
+    >
+      <UniversityTable />
     </DashboardLayout>
   );
 };

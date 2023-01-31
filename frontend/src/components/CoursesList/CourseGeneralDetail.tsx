@@ -14,7 +14,7 @@ interface IProps {
   universityName: string;
   universityLocation: string;
   admissionOpenDate: string;
-  admissionCloseDate: string;
+  admissionCloseDate?: string;
   link: string;
 }
 
@@ -94,12 +94,14 @@ const CourseGeneralDetail = ({
           text="Open"
           secondaryText={admissionOpenDate}
         />
-        <HeadingText
-          sx={{ ml: { md: 2 } }}
-          variant="body1"
-          text="Close"
-          secondaryText={admissionCloseDate}
-        />
+        {admissionCloseDate && (
+          <HeadingText
+            sx={{ ml: { md: 2 } }}
+            variant="body1"
+            text="Close"
+            secondaryText={admissionCloseDate}
+          />
+        )}
       </Grid>
 
       <TextWithIcon

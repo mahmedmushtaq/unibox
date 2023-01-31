@@ -1,9 +1,24 @@
 import { Box, Unstable_Grid2 as Grid, Typography } from "@mui/material";
-import GridViewIcon from "@mui/icons-material/GridView";
 import CourseGeneralDetail from "./CourseGeneralDetail";
 import CategoryList from "./CategoryList";
+import { useQuery, useQueries } from "@tanstack/react-query";
+import { getAllCourses } from "../../api/course";
+import { getAllUniversities } from "../../api/university";
+import { convertNameToSlug } from "../../global/helpers";
 
 const CoursesList = () => {
+  const results = useQueries({
+    queries: [
+      { queryKey: ["coursesList"], queryFn: getAllCourses },
+      {
+        queryKey: ["universitiesList"],
+        queryFn: getAllUniversities,
+      },
+    ],
+  });
+
+  const totalUniversities = results?.[1].data?.items.length || 0;
+  const courseList = results?.[0].data?.items;
   return (
     <Box>
       <Grid
@@ -18,7 +33,7 @@ const CoursesList = () => {
             Masters degree from all around the world
           </Typography>
           <Typography color="grey" mt={1}>
-            83435 Registered Universitiess
+            {totalUniversities} Registered Universitiess
           </Typography>
         </Grid>
       </Grid>
@@ -71,70 +86,20 @@ const CoursesList = () => {
           >
             Universities List
           </Typography>
-          <CourseGeneralDetail
-            heading="Educational Leadership"
-            price="10,800 EUR / year"
-            courseDuration="1.5 years"
-            summary=" The Educational Leadership programme offered by the Tampere
-              University of Applied Sciences is a unique collaborative
-              distance-learning programme. It is organised mainly online with
-              three mandatory but interactive and fun intensive weeks in
-              Finland."
-            admissionOpenDate="12 April"
-            universityName="Tampere University of Applied Sciences"
-            universityLocation="Tampere, Finland"
-            admissionCloseDate="24 december"
-            link="/course/sdlkfj"
-            universityImg="https://storage-prtl-co.imgix.net/mp/5de0e7d28f1a.png?fit=fill&fill=solid&fill-color=00FFFFFF&w=48&h=48&auto=format,compress"
-          />
-          <CourseGeneralDetail
-            heading="Educational Leadership"
-            price="10,800 EUR / year"
-            link="/course/sdlkfj"
-            courseDuration="1.5 years"
-            summary=" The Educational Leadership programme offered by the Tampere
-              University of Applied Sciences is a unique collaborative
-              distance-learning programme. It is organised mainly online with
-              three mandatory but interactive and fun intensive weeks in
-              Finland."
-            admissionOpenDate="12 April"
-            universityName="Tampere University of Applied Sciences"
-            universityLocation="Tampere, Finland"
-            admissionCloseDate="24 december"
-            universityImg="https://storage-prtl-co.imgix.net/mp/5de0e7d28f1a.png?fit=fill&fill=solid&fill-color=00FFFFFF&w=48&h=48&auto=format,compress"
-          />
-          <CourseGeneralDetail
-            heading="Educational Leadership"
-            price="10,800 EUR / year"
-            link="/course/sdlkfj"
-            courseDuration="1.5 years"
-            summary=" The Educational Leadership programme offered by the Tampere
-              University of Applied Sciences is a unique collaborative
-              distance-learning programme. It is organised mainly online with
-              three mandatory but interactive and fun intensive weeks in
-              Finland."
-            admissionOpenDate="12 April"
-            universityName="Tampere University of Applied Sciences"
-            universityLocation="Tampere, Finland"
-            admissionCloseDate="24 december"
-            universityImg="https://storage-prtl-co.imgix.net/mp/5de0e7d28f1a.png?fit=fill&fill=solid&fill-color=00FFFFFF&w=48&h=48&auto=format,compress"
-          />
-          <CourseGeneralDetail
-            heading="Educational Leadership"
-            price="10,800 EUR / year"
-            link="/course/sdlkfj"
-            courseDuration="1.5 years"
-            summary=" The Educational Leadership programme offered by the Tampere
-              University of Applied Sciences is a unique collaborative
-              distance-learning programme. It is organised mainly online with
-              three mandatory but interactive and fun intensive weeks in
-              Finland."
-            admissionOpenDate="12 April"
-            universityName="Tampere University of Applied Sciences"
-            universityLocation="Tampere, Finland"
-            admissionCloseDate="24 december"
-            universityImg="https://storage-prtl-co.imgix.net/mp/5de0e7d28f1a.png?fit=fill&fill=solid&fill-color=00FFFFFF&w=48&h=48&auto=format,compress"
-          />
+          {courseList?.map((course) => (
+            <CourseGeneralDetail
+              key={course.id}
+              heading={course.name}
+              price={course.fee}
+              courseDuration={course.duration}
+              summary={course.description}
+              admissionOpenDate={course.startDate}
+              universityName={course.university.name}
+              universityLocation={course.university.location}
+              link={`/course/${course.slug}`}
+              universityImg={course.university.iconLink}
+            />
+          ))}
         </Grid>
       </Grid>
     </Box>

@@ -3,13 +3,30 @@ import ReactDOM from "react-dom/client";
 
 import reportWebVitals from "./reportWebVitals";
 import Routes from "./routes";
+import "@aws-amplify/ui-react/styles.css";
+
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
+
+import { Amplify } from "aws-amplify";
+import awsExports from "./aws-exports";
+import { queryClient } from "./utilities/global/constants";
+Amplify.configure(awsExports);
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
-    <Routes />
+    <QueryClientProvider client={queryClient}>
+      <Routes />
+    </QueryClientProvider>
   </React.StrictMode>
 );
 

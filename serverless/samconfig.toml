@@ -1,0 +1,10 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "unibox-serverless"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1neidnn8j1kfw"
+s3_prefix = "unibox-serverless"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+image_repositories = []

@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-uniboxdashboard-dev-160757-authRole",
+      "UnauthRoleArn": "arn:aws:iam::199432011961:role/amplify-uniboxdashboard-dev-160757-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::199432011961:role/amplify-uniboxdashboard-dev-160757-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-uniboxdashboard-dev-160757-deployment",
+      "UnauthRoleName": "amplify-uniboxdashboard-dev-160757-unauthRole",
+      "StackName": "amplify-uniboxdashboard-dev-160757",
+      "StackId": "arn:aws:cloudformation:us-east-1:199432011961:stack/amplify-uniboxdashboard-dev-160757/5e79d4f0-9bd7-11ed-80f3-0e9fd2770e1b",
+      "AmplifyAppId": "d25v7lbo3retsr"
+    },
+    "categories": {
+      "auth": {
+        "uniboxdashboard5cb72a22": {}
+      },
+      "hosting": {
+        "S3AndCloudFront": {}
+      }
+    }
+  }
+}

@@ -1,14 +1,11 @@
 import Head from "next/head";
 import { Box } from "@mui/material";
 
-import Footer from "../src/components/Footer";
-import FrontLayout from "../src/Layouts/FrontLayout";
-import NavBar from "../src/components/NavBar";
+import FrontLayout from "../src/Layouts/FrontLayout"; 
 import Header from "../src/components/Home/Header";
 import Features from "../src/components/Home/Features";
 import Testimonials from "../src/components/Home/Testimonials";
 import SimpleInfoBox from "../src/components/Home/SimpleInfoBox";
-import Subscription from "../src/components/Home/Subscription";
 
 export default function Home() {
   return (

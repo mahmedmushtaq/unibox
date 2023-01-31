@@ -1,25 +1,37 @@
-import { Box } from "@mui/material";
+import { Alert, Box } from "@mui/material";
 import TableWrapper from "../../shared/TableWrapper";
-
-function createData(uniId: string, name: string, email: string) {
-  return { uniId, name, email };
-}
-
-const rows = [
-  createData("234324", "NUST", "email@gmail.cojm"),
-  createData("234", "FAST", "email1232@gmail.cojm"),
-];
-
-const columns = [
-  { heading: "Registered Uni Id" },
-  { heading: "Name" },
-  { heading: "Email" },
-];
+import { useQuery, useMutation } from "@tanstack/react-query";
+import {
+  queryClient,
+  queryClientKeyList,
+} from "../../../utilities/global/constants";
+import {
+  deleteUniversity,
+  getUniversitiesList,
+} from "../../../utilities/api/universityApi";
+import useToManuplateUniversity from "../../../hooks/api/useToManuplateUniversity";
 
 const UniversityTable = () => {
+  const { error, isLoading, onClickDeleteBtn, query } =
+    useToManuplateUniversity();
+
+  const requestError = String(error);
+
   return (
     <Box>
-      <TableWrapper columns={columns} rows={rows} />
+      {(!!error || isLoading) && (
+        <Alert severity={!!error ? "error" : "info"}>
+          {!!error ? requestError : "Please wait"}
+        </Alert>
+      )}
+      <Box>
+        <TableWrapper
+          actionColumn
+          columns={["id", "name", "location", "ranking", "rating"]}
+          rows={query.data?.items || []}
+          onClickDeleteButton={onClickDeleteBtn}
+        />
+      </Box>
     </Box>
   );
 };

@@ -5,11 +5,7 @@ import {
   Card,
   Typography,
 } from "@mui/material";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import SecondaryButton from "../shared/SecondaryButton";
 import TextWithIcon from "../shared/TextWithIcon";
-import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
-import Link from "next/link";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import AttachMoneyOutlinedIcon from "@mui/icons-material/AttachMoneyOutlined";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
@@ -23,6 +19,9 @@ interface IProps {
   universityName: string;
   courseName: string;
   universityCourseUrl: string;
+  fee: string;
+  duration: string;
+  startDate: string;
 }
 
 const CourseDetailBox = ({
@@ -31,6 +30,9 @@ const CourseDetailBox = ({
   universityName,
   courseName,
   universityCourseUrl,
+  fee,
+  duration,
+  startDate,
 }: IProps) => {
   return (
     <Container
@@ -68,7 +70,7 @@ const CourseDetailBox = ({
               icon={<WatchLaterOutlinedIcon fontSize="large" />}
               text={
                 <Box>
-                  <Typography variant="h6">1 Year</Typography>
+                  <Typography variant="h6">{duration}</Typography>
                   <Typography>Duration</Typography>
                 </Box>
               }
@@ -79,7 +81,7 @@ const CourseDetailBox = ({
               icon={<AttachMoneyOutlinedIcon fontSize="large" />}
               text={
                 <Box>
-                  <Typography variant="h6">31,092 EUR/year</Typography>
+                  <Typography variant="h6">{fee}</Typography>
                   <Typography>Tuition Fee</Typography>
                 </Box>
               }
@@ -101,7 +103,7 @@ const CourseDetailBox = ({
               icon={<CalendarMonthOutlinedIcon fontSize="large" />}
               text={
                 <Box>
-                  <Typography variant="h6">Sep 23</Typography>
+                  <Typography variant="h6">{startDate}</Typography>
                   <Typography>Start Date</Typography>
                 </Box>
               }
