@@ -1,4 +1,4 @@
-import { TGenericObj } from '../global/type';
+import { TGenericObj } from '../../global/type';
 
 export const removeEmptyFieldFromObj = (obj: TGenericObj) => {
     const newObj: any = {};

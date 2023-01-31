@@ -7,7 +7,7 @@ const SlugPage = () => {
 
   return (
     <div>
-      <Course />
+      <Course slug={slug as string} />
     </div>
   );
 };

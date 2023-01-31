@@ -227,10 +227,13 @@ Resources:
                 # Give Create/Read/Update/Delete Permissions to the CategoriesTable
                 - DynamoDBCrudPolicy:
                       TableName: !Ref CoursesTable
+                - DynamoDBCrudPolicy:
+                      TableName: !Ref UniversityTable
             Environment:
                 Variables:
                     # Make table name accessible as environment variable from function code during execution
                     COURSES_TABLE: !Ref CoursesTable
+                    UNIVERSITY_TABLE: !Ref UniversityTable
             Events:
                 Categories:
                     Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
@@ -254,15 +257,18 @@ Resources:
                 # Give Create/Read/Update/Delete Permissions to the CategoriesTable
                 - DynamoDBCrudPolicy:
                       TableName: !Ref CoursesTable
+                - DynamoDBCrudPolicy:
+                      TableName: !Ref UniversityTable       
             Environment:
                 Variables:
                     # Make table name accessible as environment variable from function code during execution
                     COURSES_TABLE: !Ref CoursesTable
+                    UNIVERSITY_TABLE: !Ref UniversityTable
             Events:
-                Categories:
+                CourseByIdApi:
                     Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
                     Properties:
-                        Path: /course/{id}
+                        Path: /course/{id} #id may be slug also
                         Method: get
         Metadata: # Manage esbuild properties
             BuildMethod: esbuild
@@ -271,8 +277,7 @@ Resources:
                 Target: es2020
                 Sourcemap: true
                 EntryPoints:
-                    - getById.ts                 
-
+                    - getById.ts
     CoursePutFunction:
         Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
         Properties:

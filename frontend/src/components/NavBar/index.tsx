@@ -58,6 +58,11 @@ const contentData = {
   navbarLinks: [
     { id: 1, text: "Home", link: "/" },
     { id: 2, text: "About", link: "/about" },
+    {
+      id: 3,
+      text: "Admin",
+      link: "https://d3oea5imqbwowo.cloudfront.net/sign-in",
+    },
   ],
 };
 

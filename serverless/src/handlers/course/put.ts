@@ -42,7 +42,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
         );
     }
 
-    const item = { id: uuid(), ...body };
+    const item = { id: uuid(), slug: name.toLowerCase().replace(/ /g, '-'), ...body };
     const tableParams = {
         TableName: tableName,
         Item: item,

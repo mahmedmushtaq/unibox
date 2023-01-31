@@ -6,6 +6,7 @@ import {
   LocationOnOutlined as LocationOnOutlinedIcon,
   ForestOutlined as ForestOutlinedIcon,
 } from "@mui/icons-material";
+import { QueryClient } from "@tanstack/react-query";
 
 export const featuresList = [
   {
@@ -60,6 +61,20 @@ export const categoriesList: ICategories[] = [
         endText: "234",
         innerList: [{ id: 211, text: "Wales" }],
       },
+      {
+        id: 22,
+        type: "checkbox",
+        text: "Usa",
+        endText: "234",
+        innerList: [{ id: 211, text: "Wales" }],
+      },
+      {
+        id: 23,
+        type: "checkbox",
+        text: "Germany",
+        endText: "234",
+        innerList: [{ id: 211, text: "Wales" }],
+      },
     ],
   },
   {
@@ -69,12 +84,6 @@ export const categoriesList: ICategories[] = [
     innerList: [
       { id: 31, text: "0-500", type: "checkbox", endText: "2134" },
       { id: 32, text: "500-1000", type: "checkbox", endText: "234" },
-      {
-        id: 33,
-        text: "change currency",
-        type: "popup",
-        popupValue: { key: "currencyChanger" },
-      },
     ],
   },
   {
@@ -137,3 +146,6 @@ export const categoriesList: ICategories[] = [
     ],
   },
 ];
+
+// Create a client
+export const queryClient = new QueryClient();

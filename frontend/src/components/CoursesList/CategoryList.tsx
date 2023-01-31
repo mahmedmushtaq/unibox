@@ -18,8 +18,11 @@ import TextWithIcon from "../shared/TextWithIcon";
 import AccordionWrapper from "../shared/AccordionWrapper";
 import StarBorderPurple500OutlinedIcon from "@mui/icons-material/StarBorderPurple500Outlined";
 import { categoriesList } from "../../global/constants";
+import { getAllCourses } from "../../api/course";
 
 const CategoryList = () => {
+
+
   return (
     <>
       <Card sx={{ px: 1, pb: 2 }}>
