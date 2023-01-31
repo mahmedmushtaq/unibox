@@ -75,6 +75,7 @@ const CourseGeneralHeadingBox = ({
         fullWidth
         LinkComponent={Link}
         href={universityCourseUrl}
+        target="_blank"
         sx={{ borderRadius: 0 }}
         text={btnText}
         endIcon={<OpenInNewOutlinedIcon />}

@@ -5,6 +5,7 @@ import Link from "next/link";
 interface IProps extends ButtonProps {
   text?: string | ReactNode;
   link?: string;
+  target?: string;
 }
 
 const SecondaryButton = ({
@@ -24,6 +25,7 @@ const SecondaryButton = ({
         fontSize: { sm: "0.7rem", md: "0.875rem" },
         ...(sx || {}),
       }}
+      target={restProps.target || ""}
       variant="contained"
       disableElevation
       color="secondary"

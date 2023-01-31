@@ -19,7 +19,7 @@ const Course = ({ slug }: IProps) => {
     queryFn: () => getCourseBySlug(slug),
   });
   const data = query.data;
-  console.log("data is ", data);
+
   return (
     <InfoLayout
       header={
