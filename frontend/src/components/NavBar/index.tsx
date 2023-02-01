@@ -25,6 +25,7 @@ const NavBar = () => {
               component={Link}
               href={linkItem.link}
               key={linkItem.id}
+              target={linkItem.target}
               mx={2}
               color="primary"
               sx={{ cursor: "pointer", textDecoration: "none" }}
@@ -61,6 +62,7 @@ const contentData = {
     {
       id: 3,
       text: "Admin",
+      target: "_blank",
       link: "https://d3oea5imqbwowo.cloudfront.net/sign-in",
     },
   ],
