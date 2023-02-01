@@ -14,6 +14,7 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import SecondaryButton from "../../shared/SecondaryButton";
 import HeadingText from "../../shared/HeadingText";
 import { featuresList } from "../../../global/constants";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -41,7 +42,13 @@ const Header = () => {
               placeholder="Search courses By Name, Location, and category"
               fullWidth
             />
-            <SecondaryButton fullWidth sx={{ mt: 2 }} text="Search Courses" />
+            <SecondaryButton
+              LinkComponent={Link}
+              href="/course"
+              fullWidth
+              sx={{ mt: 2 }}
+              text="Search Courses"
+            />
           </Box>
           <List>
             {featuresList.map((item) => (
