@@ -1,11 +1,11 @@
-import { TGenericObj } from '../../global/type';
+import { TGenericObj } from '../../global/types';
 
 export const removeEmptyFieldFromObj = (obj: TGenericObj) => {
-    const newObj: any = {};
+    const newObj: TGenericObj = {};
     Object.keys(obj).forEach((key) => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //@ts-ignore
-        if (obj[key] === Object(obj[key])) newObj[key] = removeEmpty(obj[key]);
+        if (obj[key] === Object(obj[key])) newObj[key] = removeEmptyFieldFromObj(obj[key]);
         else if (obj[key] !== undefined) newObj[key] = obj[key];
     });
     return newObj;

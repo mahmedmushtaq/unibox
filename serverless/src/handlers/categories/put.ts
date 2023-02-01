@@ -27,7 +27,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
     const item = { id: randomUUID(), name, iconLink };
     const tableParams = {
         TableName: tableName,
-        Item: removeEmptyFieldFromObj(item), //marshall(removeEmptyFieldFromObj(item)),
+        Item: removeEmptyFieldFromObj(item),
     };
 
     try {

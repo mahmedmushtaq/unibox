@@ -2,7 +2,8 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocumentClient, GetCommand, PutCommand } from '@aws-sdk/lib-dynamodb';
 import { badRequestError, httpResponse } from '../../utils/response';
-import { TGenericObj } from '../../global/type';
+import { TGenericObj } from '../../global/types';
+import { ICategoryType } from '../../global/types/categoryTypes';
 
 const client = new DynamoDBClient({});
 const ddbDocClient = DynamoDBDocumentClient.from(client);
@@ -33,7 +34,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
 
     try {
         const data = await ddbDocClient.send(new GetCommand(params));
-        item = data.Item as { name: string; subCategories: string[] };
+        item = data.Item as ICategoryType;
     } catch (err) {
         console.log('Error', err);
     }

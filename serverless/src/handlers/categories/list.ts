@@ -4,6 +4,7 @@ import { DynamoDBClient, ScanCommand } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocumentClient } from '@aws-sdk/lib-dynamodb';
 import { httpResponse } from '../../utils/response';
 import { unmarshall } from '@aws-sdk/util-dynamodb';
+import { ICategoryType } from '../../global/types/categoryTypes';
 
 const client = new DynamoDBClient({});
 
@@ -21,7 +22,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
     let items;
     try {
         const data = await ddbDocClient.send(new ScanCommand(tableParams));
-        items = data.Items?.map((item) => unmarshall(item));
+        items = data.Items?.map((item) => unmarshall(item) as ICategoryType);
     } catch (err) {
         console.log('Error', err);
         throw new Error('[categories] Error in retrieving all the categories');

@@ -4,6 +4,7 @@ import { DynamoDBDocumentClient, GetCommand, GetCommandInput } from '@aws-sdk/li
 import { badRequestError, httpResponse } from '../../utils/response';
 import { unmarshall } from '@aws-sdk/util-dynamodb';
 import { getUniversityById } from '../../utils/helpers/api';
+import { ICourseType } from '../../global/types/courseTypes';
 
 const client = new DynamoDBClient({});
 const ddbDocClient = DynamoDBDocumentClient.from(client);
@@ -29,16 +30,18 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
         },
     };
 
-    let item: any = {};
+    type itemType = ICourseType | undefined;
+
+    let item;
     try {
         const data = await ddbDocClient.send(new ScanCommand(params));
-        item = data.Items?.[0];
+        item = data.Items?.[0] as itemType;
     } catch (err) {
         console.log('Error', err);
         throw new Error('Error in finding the item');
     }
 
-    const unmarshalItem = item ? unmarshall(item) : {};
+    const unmarshalItem = item ? unmarshall(item as any) : {};
     const uniId = unmarshalItem.universityId;
 
     const universityData = await getUniversityById(uniId, ddbDocClient);
